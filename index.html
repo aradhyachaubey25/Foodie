@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foodie Website</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <nav class="navbar wrapper flex between items-center">
+      <a href="#" class="logo">Foodie.</a>
+
+      <ul class="navlist flex gap-3">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#delivery">Delivery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+      </ul>
+
+      <div class="nav-right flex gap-2">
+        <a href="#" class="cart-icon">
+          
+
+          <i class="fa-solid fa-bag-shopping"></i>
+        </a>
+
+        <div class="social-header flex gap-1">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+          <i class="fa-solid fa-bars"></i>
+        </label>
+      </div>
+    </nav>
+
+    <div class="mobile-menu wrapper">
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#delivery">Delivery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+      </ul>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero wrapper flex between">
+      <div class="hero-text">
+        <h1>Fresh & Hot <span>Fast Food</span> Delivered Fast</h1>
+        <p>Order delicious burgers, fries, pizza & more in just one tap.</p>
+
+        <div class="hero-cta flex items-center gap-2">
+          <a href="#menu" class="btn-primary">Order Now</a>
+
+          <div class="hero-social flex gap-1">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="image/burger.png" alt="Main Food">
+        <img src="image/fried-chicken.png" class="hero-img-small" alt="Side Food">
+      </div>
+    </section>
+
+  </header>
+
+
+  <!-- FEATURES SECTION -->
+  <section id="features" class="features wrapper">
+    <h2 class="section-heading">Our Features</h2>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <img src="image/best-quality.png" alt="Best Quality">
+        <h3>Best Quality</h3>
+        <p>We serve only premium & hygienic food.</p>
+      </div>
+
+      <div class="feature-card">
+        <img src="image/easy-to-order.png" alt="Order Easy">
+        <h3>Easy To Order</h3>
+        <p>Just few clicks away from your meal.</p>
+      </div>
+
+      <div class="feature-card">
+        <img src="image/fast-delivery.png" alt="Fast Delivery">
+        <h3>Fast Delivery</h3>
+        <p>Your food delivered in 30 minutes.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MENU SECTION -->
+  <section id="menu" class="menu wrapper">
+    <h2 class="section-heading">Our Menu</h2>
+
+    <div class="menu-grid">
+
+      <div class="menu-card">
+        <img src="image/burger.png">
+        <h3>Burger</h3>
+        <p>Cheesy & crispy.</p>
+        <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+      </div>
+
+      <div class="menu-card">
+        <img src="image/pizza.png">
+        <h3>Pizza</h3>
+        <p>Loaded with toppings.</p>
+        <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+      </div>
+
+      <div class="menu-card">
+        <img src="image/sandwich.png">
+        <h3>Sandwich</h3>
+        <p>Fresh & tasty.</p>
+        <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+      </div>
+
+      <div class="menu-card">
+        <img src="image/chicken-roll.png">
+        <h3>Chicken Roll</h3>
+        <p>Spicy & yummy.</p>
+        <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+      </div>
+
+      <div class="menu-card"> 
+
+        <img src="image/spaghetti.png">
+        <h3>Spaghetti</h3>
+        <p>Italian classic.</p>
+        <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+      </div>
+
+      <div class="menu-card">
+        <img src="image/spring-roll.png">
+        <h3>Spring Roll</h3>
+        <p>Crispy bite.</p>
+        <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- DELIVERY SECTION (UPDATED WITH 2 IMAGES) -->
+  <section id="delivery" class="delivery wrapper flex between">
+
+    <div class="delivery-text">
+      <h2>Fast Delivery Service</h2>
+      <p>We deliver your food fresh & hot at your doorstep.</p>
+
+      <ul>
+        <li><i class="fa-solid fa-check"></i> Safe delivery</li>
+        <li><i class="fa-solid fa-check"></i> GPS tracking</li>
+        <li><i class="fa-solid fa-check"></i> Professional delivery boys</li>
+      </ul>
+    </div>
+
+    <div class="delivery-images">
+      <img src="image/delivery-boy-with-phone.png" class="delivery-img" alt="Delivery Boy">
+      <img src="image/delivery-boy.png" class="delivery-img" alt="Delivery Boy 2">
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about wrapper flex between">
+    <div class="about-text">
+      <h2>About <span>Foodie</span></h2>
+      <p>We prepare every order with care & love. Our team ensures premium
+        quality food for everyone.</p>
+    </div>
+
+    <div class="about-image">
+      <img src="image/lasagna.png">
+    </div>
+  </section>
+
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="testimonials wrapper">
+    <h2 class="section-heading">What Customers Say</h2>
+
+    <div class="testi-grid">
+
+      <div class="testi-card">
+        <img src="image/profile1.jpeg">
+        <h3>Riya Sharma</h3>
+        <p>"Burger was amazing, 5 stars!"</p>
+      </div>
+
+      <div class="testi-card">
+        <img src="image/profile2.jpeg">
+        <h3>Arjun Verma</h3>
+        <p>"Fast delivery & great taste."</p>
+      </div>
+
+      <div class="testi-card">
+        <img src="image/profile3.jpeg">
+        <h3>Neha Gupta</h3>
+        <p>"Loved the pizza, will order again."</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 Foodie. All Rights Reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
