@@ -36,6 +36,7 @@
       </ul>
 
       <div class="nav-right flex gap-2">
+        <button class="auth-btn" id="open-auth-modal" type="button">Login / Sign Up</button>
         <a href="#" class="cart-icon">
           
 
@@ -235,6 +236,35 @@
   </section>
 
 
+  <!-- AUTH MODAL -->
+  <div id="auth-modal" class="auth-modal">
+    <div class="auth-modal-content">
+      <button id="close-auth-modal" class="close-auth" type="button" aria-label="Close auth form">&times;</button>
+      <h2>Welcome to Foodie</h2>
+
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab active" data-auth-tab="login">Login</button>
+        <button type="button" class="auth-tab" data-auth-tab="signup">Create Account</button>
+      </div>
+
+      <form id="login-form" class="auth-form active">
+        <input type="email" id="login-email" placeholder="Email Address" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button type="submit" class="auth-submit">Login</button>
+      </form>
+
+      <form id="signup-form" class="auth-form">
+        <input type="text" id="signup-name" placeholder="Full Name" required>
+        <input type="email" id="signup-email" placeholder="Email Address" required>
+        <input type="password" id="signup-password" placeholder="Create Password" required>
+        <button type="submit" class="auth-submit">Create Account</button>
+      </form>
+
+      <p id="auth-message" class="auth-message"></p>
+    </div>
+  </div>
+
+  
   <!-- FOOTER -->
   <footer class="footer">
     <p>© 2025 Foodie. All Rights Reserved.</p>

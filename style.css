@@ -89,6 +89,22 @@ body {
   transition: 0.3s;
 }
 
+.auth-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: 0.3s;
+}
+
+.auth-btn:hover {
+  background: #ff7b3e;
+  border-color: #ff7b3e;
+}
+
 .cart-icon:hover,
 .social-header a:hover {
   background: #ff7b3e;
@@ -345,6 +361,102 @@ body {
   color: #cfcfcf;
 }
 
+/* AUTH MODAL */
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 1rem;
+}
+
+.auth-modal.show {
+  display: flex;
+}
+
+.auth-modal-content {
+  width: 100%;
+  max-width: 420px;
+  background: #171c23;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.auth-modal-content h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.close-auth {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.auth-tab {
+  border: 1px solid #2a323c;
+  background: #0f1217;
+  color: #fff;
+  border-radius: 0.6rem;
+  padding: 0.55rem;
+  cursor: pointer;
+}
+
+.auth-tab.active {
+  background: #ff7b3e;
+  border-color: #ff7b3e;
+}
+
+.auth-form {
+  display: none;
+  gap: 0.8rem;
+}
+
+.auth-form.active {
+  display: grid;
+}
+
+.auth-form input {
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.6rem;
+  border: 1px solid #2a323c;
+  background: #0f1217;
+  color: #fff;
+}
+
+.auth-submit {
+  border: none;
+  border-radius: 0.6rem;
+  background: #ff7b3e;
+  color: #fff;
+  padding: 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.auth-message {
+  min-height: 1.25rem;
+  margin-top: 0.8rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hero {
@@ -372,6 +484,11 @@ body {
 
   .hamburger {
     display: block;
+  }
+
+  .auth-btn {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
   }
 
   .mobile-menu {
