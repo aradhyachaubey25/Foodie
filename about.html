@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home — Foodie</title>
+  <title>About — Foodie</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
@@ -13,21 +13,20 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <link rel="stylesheet" href="style.css" />
-
 </head>
 
 <body>
 
-  <header class="header">
+  <header class="header header-inner">
     <nav class="navbar wrapper flex between items-center">
       <a href="index.html" class="logo">Foodie.</a>
 
       <ul class="navlist flex gap-3">
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="menu.html">Menu</a></li>
         <li><a href="features.html">Features</a></li>
         <li><a href="delivery.html">Delivery</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="about.html" class="active">About</a></li>
         <li><a href="testimonials.html">Reviews</a></li>
       </ul>
 
@@ -52,38 +51,29 @@
 
     <div class="mobile-menu wrapper">
       <ul>
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="menu.html">Menu</a></li>
         <li><a href="features.html">Features</a></li>
         <li><a href="delivery.html">Delivery</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="about.html" class="active">About</a></li>
         <li><a href="testimonials.html">Reviews</a></li>
       </ul>
     </div>
+  </header>
 
-    <section id="home" class="hero wrapper flex between">
-      <div class="hero-text">
-        <h1>Fresh & Hot <span>Fast Food</span> Delivered Fast</h1>
-        <p>Order delicious burgers, fries, pizza & more in just one tap.</p>
-
-        <div class="hero-cta flex items-center gap-2">
-          <a href="menu.html" class="btn-primary">Order Now</a>
-
-          <div class="hero-social flex gap-1">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          </div>
-        </div>
+  <main class="page-main">
+    <section id="about" class="about wrapper flex between">
+      <div class="about-text">
+        <h2>About <span>Foodie</span></h2>
+        <p>We prepare every order with care & love. Our team ensures premium
+          quality food for everyone.</p>
       </div>
 
-      <div class="hero-image">
-        <img src="image/burger.png" alt="Main Food">
-        <img src="image/fried-chicken.png" class="hero-img-small" alt="Side Food">
+      <div class="about-image">
+        <img src="image/lasagna.png" alt="Lasagna">
       </div>
     </section>
-
-  </header>
+  </main>
 
   <footer class="footer">
     <p>© 2026 Foodie. All Rights Reserved.</p>

@@ -6,6 +6,13 @@ if (menuToggle && mobileMenu) {
   menuToggle.addEventListener("change", () => {
     mobileMenu.style.display = menuToggle.checked ? "block" : "none";
   });
+
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menuToggle.checked = false;
+      mobileMenu.style.display = "none";
+    });
+  });
 }
 
 // ===== ADD TO CART BADGE =====

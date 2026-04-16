@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home — Foodie</title>
+  <title>Menu — Foodie</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
@@ -13,18 +13,17 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <link rel="stylesheet" href="style.css" />
-
 </head>
 
 <body>
 
-  <header class="header">
+  <header class="header header-inner">
     <nav class="navbar wrapper flex between items-center">
       <a href="index.html" class="logo">Foodie.</a>
 
       <ul class="navlist flex gap-3">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="menu.html">Menu</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html" class="active">Menu</a></li>
         <li><a href="features.html">Features</a></li>
         <li><a href="delivery.html">Delivery</a></li>
         <li><a href="about.html">About</a></li>
@@ -52,38 +51,67 @@
 
     <div class="mobile-menu wrapper">
       <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="menu.html">Menu</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html" class="active">Menu</a></li>
         <li><a href="features.html">Features</a></li>
         <li><a href="delivery.html">Delivery</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="testimonials.html">Reviews</a></li>
       </ul>
     </div>
+  </header>
 
-    <section id="home" class="hero wrapper flex between">
-      <div class="hero-text">
-        <h1>Fresh & Hot <span>Fast Food</span> Delivered Fast</h1>
-        <p>Order delicious burgers, fries, pizza & more in just one tap.</p>
+  <main class="page-main">
+    <section id="menu" class="menu wrapper">
+      <h2 class="section-heading">Our Menu</h2>
 
-        <div class="hero-cta flex items-center gap-2">
-          <a href="menu.html" class="btn-primary">Order Now</a>
+      <div class="menu-grid">
 
-          <div class="hero-social flex gap-1">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          </div>
+        <div class="menu-card">
+          <img src="image/burger.png" alt="Burger">
+          <h3>Burger</h3>
+          <p>Cheesy & crispy.</p>
+          <button class="add-btn" type="button"><i class="fa-solid fa-plus"></i></button>
         </div>
-      </div>
 
-      <div class="hero-image">
-        <img src="image/burger.png" alt="Main Food">
-        <img src="image/fried-chicken.png" class="hero-img-small" alt="Side Food">
+        <div class="menu-card">
+          <img src="image/pizza.png" alt="Pizza">
+          <h3>Pizza</h3>
+          <p>Loaded with toppings.</p>
+          <button class="add-btn" type="button"><i class="fa-solid fa-plus"></i></button>
+        </div>
+
+        <div class="menu-card">
+          <img src="image/sandwich.png" alt="Sandwich">
+          <h3>Sandwich</h3>
+          <p>Fresh & tasty.</p>
+          <button class="add-btn" type="button"><i class="fa-solid fa-plus"></i></button>
+        </div>
+
+        <div class="menu-card">
+          <img src="image/chicken-roll.png" alt="Chicken Roll">
+          <h3>Chicken Roll</h3>
+          <p>Spicy & yummy.</p>
+          <button class="add-btn" type="button"><i class="fa-solid fa-plus"></i></button>
+        </div>
+
+        <div class="menu-card">
+          <img src="image/spaghetti.png" alt="Spaghetti">
+          <h3>Spaghetti</h3>
+          <p>Italian classic.</p>
+          <button class="add-btn" type="button"><i class="fa-solid fa-plus"></i></button>
+        </div>
+
+        <div class="menu-card">
+          <img src="image/spring-roll.png" alt="Spring Roll">
+          <h3>Spring Roll</h3>
+          <p>Crispy bite.</p>
+          <button class="add-btn" type="button"><i class="fa-solid fa-plus"></i></button>
+        </div>
+
       </div>
     </section>
-
-  </header>
+  </main>
 
   <footer class="footer">
     <p>© 2026 Foodie. All Rights Reserved.</p>

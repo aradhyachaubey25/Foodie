@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home — Foodie</title>
+  <title>Reviews — Foodie</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
@@ -13,22 +13,21 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <link rel="stylesheet" href="style.css" />
-
 </head>
 
 <body>
 
-  <header class="header">
+  <header class="header header-inner">
     <nav class="navbar wrapper flex between items-center">
       <a href="index.html" class="logo">Foodie.</a>
 
       <ul class="navlist flex gap-3">
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="menu.html">Menu</a></li>
         <li><a href="features.html">Features</a></li>
         <li><a href="delivery.html">Delivery</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="testimonials.html">Reviews</a></li>
+        <li><a href="testimonials.html" class="active">Reviews</a></li>
       </ul>
 
       <div class="nav-right flex gap-2">
@@ -52,38 +51,43 @@
 
     <div class="mobile-menu wrapper">
       <ul>
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="menu.html">Menu</a></li>
         <li><a href="features.html">Features</a></li>
         <li><a href="delivery.html">Delivery</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="testimonials.html">Reviews</a></li>
+        <li><a href="testimonials.html" class="active">Reviews</a></li>
       </ul>
     </div>
+  </header>
 
-    <section id="home" class="hero wrapper flex between">
-      <div class="hero-text">
-        <h1>Fresh & Hot <span>Fast Food</span> Delivered Fast</h1>
-        <p>Order delicious burgers, fries, pizza & more in just one tap.</p>
+  <main class="page-main">
+    <section id="testimonials" class="testimonials wrapper">
+      <h2 class="section-heading">What Customers Say</h2>
 
-        <div class="hero-cta flex items-center gap-2">
-          <a href="menu.html" class="btn-primary">Order Now</a>
+      <div class="testi-grid">
 
-          <div class="hero-social flex gap-1">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          </div>
+        <div class="testi-card">
+          <img src="image/profile1.jpeg" alt="Riya Sharma">
+          <h3>Riya Sharma</h3>
+          <p>"Burger was amazing, 5 stars!"</p>
         </div>
-      </div>
 
-      <div class="hero-image">
-        <img src="image/burger.png" alt="Main Food">
-        <img src="image/fried-chicken.png" class="hero-img-small" alt="Side Food">
+        <div class="testi-card">
+          <img src="image/profile2.jpeg" alt="Arjun Verma">
+          <h3>Arjun Verma</h3>
+          <p>"Fast delivery & great taste."</p>
+        </div>
+
+        <div class="testi-card">
+          <img src="image/profile3.jpeg" alt="Neha Gupta">
+          <h3>Neha Gupta</h3>
+          <p>"Loved the pizza, will order again."</p>
+        </div>
+
       </div>
     </section>
-
-  </header>
+  </main>
 
   <footer class="footer">
     <p>© 2026 Foodie. All Rights Reserved.</p>

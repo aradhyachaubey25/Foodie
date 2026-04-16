@@ -50,6 +50,14 @@ body {
   background: radial-gradient(circle at top left, #ff7b3e, #0f1217 55%);
 }
 
+.header-inner {
+  padding-bottom: 1.25rem;
+}
+
+.page-main {
+  padding-top: 0.5rem;
+}
+
 .logo {
   text-decoration: none;
   font-size: 1.7rem;
@@ -87,6 +95,10 @@ body {
   color: white;
   font-size: 0.8rem;
   transition: 0.3s;
+}
+
+.cart-icon {
+  position: relative;
 }
 
 .auth-btn {
