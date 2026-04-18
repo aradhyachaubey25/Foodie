@@ -19,8 +19,21 @@
 <body>
 
   <header class="header">
-    <nav class="navbar wrapper flex between items-center">
+    <nav class="navbar wrapper nav-with-search flex items-center gap-2">
       <a href="index.html" class="logo">Foodie.</a>
+
+      <form class="nav-search-form" action="menu.html" method="get" role="search">
+        <div class="nav-search-inner flex items-center gap-1">
+          <select name="type" class="nav-search-type" aria-label="Search by">
+            <option value="dish">Dishes</option>
+            <option value="restaurant">Restaurants</option>
+          </select>
+          <span class="nav-search-divider" aria-hidden="true"></span>
+          <i class="fa-solid fa-magnifying-glass nav-search-icon" aria-hidden="true"></i>
+          <input type="search" name="q" class="nav-search-input" placeholder="Search dishes…"
+            aria-label="Search dishes" autocomplete="off">
+        </div>
+      </form>
 
       <ul class="navlist flex gap-3">
         <li><a href="index.html" class="active">Home</a></li>
@@ -51,6 +64,18 @@
     </nav>
 
     <div class="mobile-menu wrapper">
+      <form class="nav-search-form nav-search-form--mobile" action="menu.html" method="get" role="search">
+        <div class="nav-search-inner flex items-center gap-1">
+          <select name="type" class="nav-search-type" aria-label="Search by">
+            <option value="dish">Dishes</option>
+            <option value="restaurant">Restaurants</option>
+          </select>
+          <span class="nav-search-divider" aria-hidden="true"></span>
+          <i class="fa-solid fa-magnifying-glass nav-search-icon" aria-hidden="true"></i>
+          <input type="search" name="q" class="nav-search-input" placeholder="Search dishes…"
+            aria-label="Search dishes" autocomplete="off">
+        </div>
+      </form>
       <ul>
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="menu.html">Menu</a></li>
@@ -68,12 +93,6 @@
 
         <div class="hero-cta flex items-center gap-2">
           <a href="menu.html" class="btn-primary">Order Now</a>
-
-          <div class="hero-social flex gap-1">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          </div>
         </div>
       </div>
 

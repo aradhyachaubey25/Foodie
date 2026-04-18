@@ -18,8 +18,21 @@
 <body>
 
   <header class="header header-inner">
-    <nav class="navbar wrapper flex between items-center">
+    <nav class="navbar wrapper nav-with-search flex items-center gap-2">
       <a href="index.html" class="logo">Foodie.</a>
+
+      <form class="nav-search-form" action="menu.html" method="get" role="search">
+        <div class="nav-search-inner flex items-center gap-1">
+          <select name="type" class="nav-search-type" aria-label="Search by">
+            <option value="dish">Dishes</option>
+            <option value="restaurant">Restaurants</option>
+          </select>
+          <span class="nav-search-divider" aria-hidden="true"></span>
+          <i class="fa-solid fa-magnifying-glass nav-search-icon" aria-hidden="true"></i>
+          <input type="search" name="q" class="nav-search-input" placeholder="Search dishes…"
+            aria-label="Search dishes" autocomplete="off">
+        </div>
+      </form>
 
       <ul class="navlist flex gap-3">
         <li><a href="index.html">Home</a></li>
@@ -50,6 +63,18 @@
     </nav>
 
     <div class="mobile-menu wrapper">
+      <form class="nav-search-form nav-search-form--mobile" action="menu.html" method="get" role="search">
+        <div class="nav-search-inner flex items-center gap-1">
+          <select name="type" class="nav-search-type" aria-label="Search by">
+            <option value="dish">Dishes</option>
+            <option value="restaurant">Restaurants</option>
+          </select>
+          <span class="nav-search-divider" aria-hidden="true"></span>
+          <i class="fa-solid fa-magnifying-glass nav-search-icon" aria-hidden="true"></i>
+          <input type="search" name="q" class="nav-search-input" placeholder="Search dishes…"
+            aria-label="Search dishes" autocomplete="off">
+        </div>
+      </form>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="menu.html" class="active">Menu</a></li>
@@ -64,6 +89,63 @@
   <main class="page-main">
     <section id="menu" class="menu wrapper">
       <h2 class="section-heading">Our Menu</h2>
+
+      <div class="menu-dashboard" role="region" aria-label="Menu sort">
+        <div class="menu-toolbar menu-toolbar--sort-only flex items-center gap-2">
+          <label class="menu-sort-wrap flex items-center gap-1">
+            <span class="menu-sort-label">Sort</span>
+            <select id="menu-sort" class="menu-sort-select" aria-label="Sort menu items">
+              <option value="default">Default</option>
+              <option value="name-asc">Name (A–Z)</option>
+              <option value="name-desc">Name (Z–A)</option>
+              <option value="price-asc">Price (low to high)</option>
+              <option value="price-desc">Price (high to low)</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <p id="menu-empty" class="menu-empty" hidden>No dishes match your search.</p>
+      <p id="restaurant-empty" class="menu-empty" hidden>No restaurants match your search.</p>
+
+      <div id="restaurant-grid" class="restaurant-grid" hidden>
+        <article class="restaurant-card" data-restaurant-name="The Burger Barn"
+          data-restaurant-tags="american burgers fries fast food">
+          <h3>The Burger Barn</h3>
+          <p class="restaurant-cuisine">American · Burgers &amp; fries</p>
+          <p class="restaurant-meta">4.3 ★ · 22 min · 2 km</p>
+        </article>
+        <article class="restaurant-card" data-restaurant-name="Mario's Pizza Hub"
+          data-restaurant-tags="italian pizza pasta delivery">
+          <h3>Mario's Pizza Hub</h3>
+          <p class="restaurant-cuisine">Italian · Pizza &amp; pasta</p>
+          <p class="restaurant-meta">4.5 ★ · 28 min · 3 km</p>
+        </article>
+        <article class="restaurant-card" data-restaurant-name="Spice Route Kitchen"
+          data-restaurant-tags="indian curry biryani north indian spicy">
+          <h3>Spice Route Kitchen</h3>
+          <p class="restaurant-cuisine">North Indian · Curry &amp; biryani</p>
+          <p class="restaurant-meta">4.2 ★ · 35 min · 4 km</p>
+        </article>
+        <article class="restaurant-card" data-restaurant-name="Roll &amp; Wrap Co."
+          data-restaurant-tags="rolls wraps street food snacks">
+          <h3>Roll &amp; Wrap Co.</h3>
+          <p class="restaurant-cuisine">Street food · Rolls &amp; wraps</p>
+          <p class="restaurant-meta">4.1 ★ · 18 min · 1 km</p>
+        </article>
+        <article class="restaurant-card" data-restaurant-name="Green Bowl Cafe"
+          data-restaurant-tags="healthy salad vegan vegetarian bowls">
+          <h3>Green Bowl Cafe</h3>
+          <p class="restaurant-cuisine">Healthy · Salads &amp; bowls</p>
+          <p class="restaurant-meta">4.4 ★ · 25 min · 2 km</p>
+        </article>
+        <article class="restaurant-card" data-restaurant-name="Dragon Wok Express"
+          data-restaurant-tags="chinese noodles momos asian">
+          <h3>Dragon Wok Express</h3>
+          <p class="restaurant-cuisine">Chinese · Noodles &amp; momos</p>
+          <p class="restaurant-meta">4.0 ★ · 30 min · 5 km</p>
+        </article>
+      </div>
 
       <div class="menu-grid">
 

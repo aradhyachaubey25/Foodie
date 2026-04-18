@@ -363,6 +363,230 @@ syncCartBadges();
 renderCartDrawer();
 initMenuQtyControls();
 
+// ===== NAV SEARCH (URL ?q= fills header search on all pages) =====
+function initNavSearchFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get("q");
+  if (q !== null) {
+    const v = q.trim();
+    document.querySelectorAll('.nav-search-input[name="q"]').forEach((el) => {
+      el.value = v;
+    });
+  }
+  const type = params.get("type");
+  if (type === "dish" || type === "restaurant") {
+    document.querySelectorAll('select[name="type"]').forEach((el) => {
+      el.value = type;
+    });
+  }
+}
+
+initNavSearchFromQuery();
+
+function initNavSearchTypeOutsideMenu() {
+  if (document.getElementById("menu")) return;
+
+  const typeSelects = document.querySelectorAll('select[name="type"]');
+  const searchInputs = document.querySelectorAll('.nav-search-input[name="q"]');
+  if (!typeSelects.length) return;
+
+  function updatePlaceholders() {
+    const isRestaurant = typeSelects[0]?.value === "restaurant";
+    const ph = isRestaurant ? "Search restaurants…" : "Search dishes…";
+    const label = isRestaurant ? "Search restaurants" : "Search dishes";
+    searchInputs.forEach((el) => {
+      el.placeholder = ph;
+      el.setAttribute("aria-label", label);
+    });
+  }
+
+  typeSelects.forEach((el) => {
+    el.addEventListener("change", () => {
+      const v = el.value;
+      typeSelects.forEach((o) => {
+        if (o !== el) o.value = v;
+      });
+      updatePlaceholders();
+    });
+  });
+  updatePlaceholders();
+}
+
+initNavSearchTypeOutsideMenu();
+
+// ===== MENU DASHBOARD (header search: dishes / restaurants + sort) =====
+function initMenuDashboard() {
+  const section = document.getElementById("menu");
+  if (!section) return;
+
+  const grid = section.querySelector(".menu-grid");
+  const sortSelect = document.getElementById("menu-sort");
+  const emptyEl = document.getElementById("menu-empty");
+  const restaurantGrid = document.getElementById("restaurant-grid");
+  const restaurantEmpty = document.getElementById("restaurant-empty");
+  const menuDashboard = section.querySelector(".menu-dashboard");
+  if (!grid || !sortSelect) return;
+
+  const searchInputs = document.querySelectorAll('.nav-search-input[name="q"]');
+  const typeSelects = document.querySelectorAll('select[name="type"]');
+
+  function getSearchType() {
+    return typeSelects[0]?.value === "restaurant" ? "restaurant" : "dish";
+  }
+
+  function syncTypeSelects(fromEl) {
+    const v = fromEl.value;
+    typeSelects.forEach((o) => {
+      if (o !== fromEl) o.value = v;
+    });
+  }
+
+  function updateSearchPlaceholders() {
+    const isRestaurant = getSearchType() === "restaurant";
+    const ph = isRestaurant ? "Search restaurants…" : "Search dishes…";
+    const label = isRestaurant ? "Search restaurants" : "Search dishes";
+    searchInputs.forEach((el) => {
+      el.placeholder = ph;
+      el.setAttribute("aria-label", label);
+    });
+  }
+
+  const getCards = () =>
+    [...grid.querySelectorAll(".menu-card[data-menu-id]")];
+
+  getCards().forEach((card, i) => {
+    if (card.dataset.menuIndex == null || card.dataset.menuIndex === "") {
+      card.dataset.menuIndex = String(i);
+    }
+  });
+
+  function cardSearchText(card) {
+    const name = (card.dataset.menuName || "").toLowerCase();
+    const title = card.querySelector("h3")?.textContent.trim().toLowerCase() || "";
+    const descEl = card.querySelector("p:not(.menu-price)");
+    const desc = descEl?.textContent.trim().toLowerCase() || "";
+    return `${name} ${title} ${desc}`;
+  }
+
+  function restaurantSearchText(card) {
+    const name = (card.dataset.restaurantName || "").toLowerCase();
+    const tags = (card.dataset.restaurantTags || "").toLowerCase();
+    const title = card.querySelector("h3")?.textContent.trim().toLowerCase() || "";
+    const lines = [...card.querySelectorAll("p")]
+      .map((p) => p.textContent.trim().toLowerCase())
+      .join(" ");
+    return `${name} ${tags} ${title} ${lines}`;
+  }
+
+  function getSearchQuery() {
+    return (searchInputs[0]?.value || "").trim().toLowerCase();
+  }
+
+  function applyMenuFilterSort() {
+    const type = getSearchType();
+    const headingEl = section.querySelector(".section-heading");
+
+    if (type === "restaurant" && restaurantGrid) {
+      if (headingEl) headingEl.textContent = "Restaurants";
+      if (menuDashboard) menuDashboard.hidden = true;
+      grid.hidden = true;
+      if (emptyEl) emptyEl.hidden = true;
+      restaurantGrid.hidden = false;
+
+      const q = getSearchQuery();
+      const allR = [...restaurantGrid.querySelectorAll(".restaurant-card")];
+      let filteredR = q
+        ? allR.filter((c) => restaurantSearchText(c).includes(q))
+        : [...allR];
+
+      filteredR.forEach((c) => {
+        c.hidden = false;
+        restaurantGrid.appendChild(c);
+      });
+      allR.forEach((c) => {
+        if (!filteredR.includes(c)) {
+          c.hidden = true;
+          restaurantGrid.appendChild(c);
+        }
+      });
+
+      if (restaurantEmpty) restaurantEmpty.hidden = filteredR.length > 0;
+      return;
+    }
+
+    if (headingEl) headingEl.textContent = "Our Menu";
+    if (menuDashboard) menuDashboard.hidden = false;
+    grid.hidden = false;
+    if (restaurantGrid) restaurantGrid.hidden = true;
+    if (restaurantEmpty) restaurantEmpty.hidden = true;
+
+    const q = getSearchQuery();
+    const sortMode = sortSelect.value;
+    const all = getCards();
+
+    let filtered = q
+      ? all.filter((c) => cardSearchText(c).includes(q))
+      : [...all];
+
+    const compare = (a, b) => {
+      switch (sortMode) {
+        case "name-asc":
+          return (a.dataset.menuName || "").localeCompare(b.dataset.menuName || "");
+        case "name-desc":
+          return (b.dataset.menuName || "").localeCompare(a.dataset.menuName || "");
+        case "price-asc":
+          return Number(a.dataset.menuPrice) - Number(b.dataset.menuPrice);
+        case "price-desc":
+          return Number(b.dataset.menuPrice) - Number(a.dataset.menuPrice);
+        default:
+          return Number(a.dataset.menuIndex) - Number(b.dataset.menuIndex);
+      }
+    };
+
+    filtered.sort(compare);
+
+    filtered.forEach((c) => {
+      c.hidden = false;
+      grid.appendChild(c);
+    });
+
+    all.forEach((c) => {
+      if (!filtered.includes(c)) {
+        c.hidden = true;
+        grid.appendChild(c);
+      }
+    });
+
+    if (emptyEl) {
+      emptyEl.hidden = filtered.length > 0;
+    }
+  }
+
+  searchInputs.forEach((el) => {
+    el.addEventListener("input", () => {
+      const v = el.value;
+      searchInputs.forEach((o) => {
+        if (o !== el) o.value = v;
+      });
+      applyMenuFilterSort();
+    });
+  });
+
+  typeSelects.forEach((el) => {
+    el.addEventListener("change", () => {
+      syncTypeSelects(el);
+      updateSearchPlaceholders();
+      applyMenuFilterSort();
+    });
+  });
+
+  sortSelect.addEventListener("change", applyMenuFilterSort);
+  updateSearchPlaceholders();
+  applyMenuFilterSort();
+}
+
+initMenuDashboard();
+
 // ===== SMOOTH SCROLL =====
 document.querySelectorAll("a[href^='#']").forEach((link) => {
   if (link.classList.contains("cart-icon")) return;
