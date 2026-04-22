@@ -93,6 +93,7 @@ function syncCartBadges() {
   document.querySelectorAll(".cart-icon .badge").forEach((el) => {
     el.textContent = String(qty);
   });
+  syncMenuAddToCartCta();
 }
 
 function getCartLineQty(id) {
@@ -115,6 +116,24 @@ function syncMenuQtyControls() {
     addBtn.style.display = qty > 0 ? "none" : "inline-flex";
     qtyControl.style.display = qty > 0 ? "inline-flex" : "none";
   });
+  syncMenuAddToCartCta();
+}
+
+function syncMenuAddToCartCta() {
+  const ctaBtn = document.getElementById("menu-add-to-cart-cta");
+  const actionsWrap = document.getElementById("menu-actions");
+  if (!ctaBtn || !actionsWrap) return;
+
+  const qty = cartTotalQty(loadCart());
+  actionsWrap.hidden = qty <= 0;
+  ctaBtn.textContent = `Add to Cart (${qty})`;
+}
+
+function initMenuAddToCartCta() {
+  const ctaBtn = document.getElementById("menu-add-to-cart-cta");
+  if (!ctaBtn) return;
+  ctaBtn.addEventListener("click", openCartDrawer);
+  syncMenuAddToCartCta();
 }
 
 function initMenuQtyControls() {
@@ -362,6 +381,7 @@ document.querySelectorAll(".cart-icon").forEach((cartIcon) => {
 syncCartBadges();
 renderCartDrawer();
 initMenuQtyControls();
+initMenuAddToCartCta();
 
 // ===== NAV SEARCH (URL ?q= fills header search on all pages) =====
 function initNavSearchFromQuery() {
@@ -421,6 +441,7 @@ function initMenuDashboard() {
 
   const grid = section.querySelector(".menu-grid");
   const sortSelect = document.getElementById("menu-sort");
+  const vegFilterSelect = document.getElementById("menu-veg-filter");
   const emptyEl = document.getElementById("menu-empty");
   const restaurantGrid = document.getElementById("restaurant-grid");
   const restaurantEmpty = document.getElementById("restaurant-empty");
@@ -482,6 +503,13 @@ function initMenuDashboard() {
     return (searchInputs[0]?.value || "").trim().toLowerCase();
   }
 
+  function matchesVegFilter(card) {
+    const mode = vegFilterSelect?.value || "all";
+    if (mode === "all") return true;
+    const itemType = (card.dataset.menuType || "").toLowerCase();
+    return itemType === mode;
+  }
+
   function applyMenuFilterSort() {
     const type = getSearchType();
     const headingEl = section.querySelector(".section-heading");
@@ -524,9 +552,10 @@ function initMenuDashboard() {
     const sortMode = sortSelect.value;
     const all = getCards();
 
-    let filtered = q
-      ? all.filter((c) => cardSearchText(c).includes(q))
-      : [...all];
+    let filtered = all.filter((c) => {
+      const matchSearch = q ? cardSearchText(c).includes(q) : true;
+      return matchSearch && matchesVegFilter(c);
+    });
 
     const compare = (a, b) => {
       switch (sortMode) {
@@ -581,6 +610,7 @@ function initMenuDashboard() {
   });
 
   sortSelect.addEventListener("change", applyMenuFilterSort);
+  if (vegFilterSelect) vegFilterSelect.addEventListener("change", applyMenuFilterSort);
   updateSearchPlaceholders();
   applyMenuFilterSort();
 }
