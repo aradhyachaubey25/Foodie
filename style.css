@@ -251,15 +251,6 @@ body {
   border-color: #ff7b3e;
 }
 
-.auth-btn.auth-btn--logged-in {
-  border-color: rgba(66, 214, 127, 0.55);
-}
-
-.auth-btn.auth-btn--logged-in:hover {
-  background: rgba(66, 214, 127, 0.2);
-  border-color: #42d67f;
-}
-
 .cart-icon:hover,
 .social-header a:hover {
   background: #ff7b3e;
@@ -675,17 +666,6 @@ body {
   padding: 2rem 0.5rem;
 }
 
-.cart-login-hint {
-  background: rgba(255, 123, 62, 0.12);
-  border: 1px solid rgba(255, 123, 62, 0.35);
-  border-radius: 0.6rem;
-  padding: 0.65rem 0.75rem;
-  margin-bottom: 0.85rem;
-  font-size: 0.88rem;
-  color: #e8ecf1;
-  line-height: 1.4;
-}
-
 .cart-line {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -901,7 +881,7 @@ body.cart-open {
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 1100;
+  z-index: 999;
   padding: 1rem;
 }
 

@@ -15,126 +15,6 @@ if (menuToggle && mobileMenu) {
   });
 }
 
-// ===== AUTH SESSION (localStorage demo — not for production) =====
-const FOODIE_SESSION_KEY = "foodieSession";
-const FOODIE_USERS_KEY = "foodieUsers";
-const LEGACY_FOODIE_USER_KEY = "foodieUser";
-
-function showAuthMessage(message, isSuccess) {
-  const el = document.getElementById("auth-message");
-  if (!el) return;
-  el.textContent = message;
-  el.style.color = isSuccess ? "#42d67f" : "#ff7b7b";
-}
-
-function switchAuthTab(tabName) {
-  document.querySelectorAll(".auth-tab").forEach((tab) => {
-    tab.classList.toggle("active", tab.dataset.authTab === tabName);
-  });
-  const loginForm = document.getElementById("login-form");
-  const signupForm = document.getElementById("signup-form");
-  if (loginForm && signupForm) {
-    loginForm.classList.toggle("active", tabName === "login");
-    signupForm.classList.toggle("active", tabName === "signup");
-  }
-  showAuthMessage("", true);
-}
-
-function openAuthPrompt(message) {
-  const modal = document.getElementById("auth-modal");
-  if (modal) modal.classList.add("show");
-  switchAuthTab("login");
-  if (message) showAuthMessage(message, false);
-}
-
-function migrateLegacyUser() {
-  const raw = localStorage.getItem(LEGACY_FOODIE_USER_KEY);
-  if (!raw) return;
-  try {
-    const u = JSON.parse(raw);
-    if (!u || !u.email) return;
-    const users = loadUsersRaw();
-    const email = String(u.email).toLowerCase();
-    if (!users.some((row) => row.email === email)) {
-      users.push({
-        name: String(u.name || "User"),
-        email,
-        password: String(u.password || ""),
-      });
-      localStorage.setItem(FOODIE_USERS_KEY, JSON.stringify(users));
-    }
-    localStorage.removeItem(LEGACY_FOODIE_USER_KEY);
-  } catch {
-    /* ignore */
-  }
-}
-
-function loadUsersRaw() {
-  try {
-    const raw = localStorage.getItem(FOODIE_USERS_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
-}
-
-function loadUsers() {
-  migrateLegacyUser();
-  return loadUsersRaw();
-}
-
-function saveUsers(users) {
-  localStorage.setItem(FOODIE_USERS_KEY, JSON.stringify(users));
-}
-
-function getSession() {
-  try {
-    const raw = localStorage.getItem(FOODIE_SESSION_KEY);
-    if (!raw) return null;
-    const s = JSON.parse(raw);
-    if (s && s.email) return { name: String(s.name || "User"), email: String(s.email).toLowerCase() };
-  } catch {
-    /* ignore */
-  }
-  return null;
-}
-
-function setSession(user) {
-  localStorage.setItem(
-    FOODIE_SESSION_KEY,
-    JSON.stringify({
-      name: user.name,
-      email: String(user.email).toLowerCase(),
-    })
-  );
-}
-
-function clearSession() {
-  localStorage.removeItem(FOODIE_SESSION_KEY);
-}
-
-function isLoggedIn() {
-  return !!getSession();
-}
-
-function syncAuthUI() {
-  const btn = document.getElementById("open-auth-modal");
-  if (!btn) return;
-  const s = getSession();
-  if (s) {
-    const short = s.name.trim().split(/\s+/)[0] || "Account";
-    btn.textContent = `Log out · ${short}`;
-    btn.classList.add("auth-btn--logged-in");
-    btn.title = `Signed in as ${s.email}`;
-  } else {
-    btn.textContent = "Login / Sign Up";
-    btn.classList.remove("auth-btn--logged-in");
-    btn.title = "";
-  }
-}
-
 // ===== CART (localStorage + drawer, frontend only) =====
 const FOODIE_CART_KEY = "foodieCart";
 
@@ -165,10 +45,6 @@ function cartSubtotal(items) {
 }
 
 function addLineToCart(id, name, price) {
-  if (!isLoggedIn()) {
-    openAuthPrompt("Log in or create an account to add food to your cart.");
-    return loadCart();
-  }
   const cart = loadCart();
   const existing = cart.find((row) => row.id === id);
   if (existing) {
@@ -184,12 +60,7 @@ function setLineQty(id, qty) {
   let cart = loadCart();
   const row = cart.find((r) => r.id === id);
   if (!row) return cart;
-  const prev = Number(row.qty) || 0;
   const n = Math.max(0, Math.floor(Number(qty)));
-  if (n > prev && !isLoggedIn()) {
-    openAuthPrompt("Log in or create an account to add more items.");
-    return cart;
-  }
   if (n === 0) cart = cart.filter((r) => r.id !== id);
   else row.qty = n;
   saveCart(cart);
@@ -320,14 +191,6 @@ function renderCartDrawer() {
   const cart = loadCart();
   bodyEl.replaceChildren();
 
-  if (!isLoggedIn()) {
-    const hint = document.createElement("p");
-    hint.className = "cart-login-hint";
-    hint.textContent =
-      "You are not signed in. Log in or sign up to add dishes to your cart from the Menu.";
-    bodyEl.appendChild(hint);
-  }
-
   if (cart.length === 0) {
     const empty = document.createElement("p");
     empty.className = "cart-empty";
@@ -453,11 +316,6 @@ function ensureCartDrawer() {
   document.getElementById("cart-checkout").addEventListener("click", () => {
     const cart = loadCart();
     if (cart.length === 0) return;
-    if (!isLoggedIn()) {
-      closeCartDrawer();
-      openAuthPrompt("Please log in to checkout.");
-      return;
-    }
     alert("Checkout is not wired yet — this is a frontend-only build.");
   });
 
@@ -761,19 +619,30 @@ const closeAuthModalBtn = document.getElementById("close-auth-modal");
 const authTabs = document.querySelectorAll(".auth-tab");
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
+const authMessage = document.getElementById("auth-message");
+
+function showAuthMessage(message, isSuccess) {
+  if (!authMessage) return;
+  authMessage.textContent = message;
+  authMessage.style.color = isSuccess ? "#42d67f" : "#ff7b7b";
+}
+
+function switchAuthTab(tabName) {
+  authTabs.forEach((tab) => {
+    tab.classList.toggle("active", tab.dataset.authTab === tabName);
+  });
+
+  if (loginForm && signupForm) {
+    loginForm.classList.toggle("active", tabName === "login");
+    signupForm.classList.toggle("active", tabName === "signup");
+  }
+
+  showAuthMessage("", true);
+}
 
 if (openAuthModalBtn && authModal && closeAuthModalBtn) {
   openAuthModalBtn.addEventListener("click", () => {
-    if (getSession()) {
-      clearSession();
-      clearCartStorage();
-      syncCartBadges();
-      renderCartDrawer();
-      syncMenuQtyControls();
-      syncAuthUI();
-      return;
-    }
-    openAuthPrompt("");
+    authModal.classList.add("show");
   });
 
   closeAuthModalBtn.addEventListener("click", () => {
@@ -809,14 +678,14 @@ if (signupForm) {
       return;
     }
 
-    const users = loadUsers();
-    if (users.some((u) => u.email === email)) {
-      showAuthMessage("This email is already registered. Try logging in.", false);
-      return;
-    }
-
-    users.push({ name, email, password });
-    saveUsers(users);
+    localStorage.setItem(
+      "foodieUser",
+      JSON.stringify({
+        name,
+        email,
+        password,
+      })
+    );
 
     showAuthMessage("Account created! Please login now.", true);
     switchAuthTab("login");
@@ -830,26 +699,20 @@ if (loginForm) {
 
     const email = document.getElementById("login-email")?.value.trim().toLowerCase();
     const password = document.getElementById("login-password")?.value.trim();
-    const users = loadUsers();
+    const savedUser = localStorage.getItem("foodieUser");
 
-    if (users.length === 0) {
+    if (!savedUser) {
       showAuthMessage("No account found. Please create one first.", false);
       return;
     }
 
-    const user = users.find((u) => u.email === email && u.password === password);
-    if (!user) {
-      showAuthMessage("Invalid email or password.", false);
+    const parsedUser = JSON.parse(savedUser);
+    if (parsedUser.email === email && parsedUser.password === password) {
+      showAuthMessage(`Welcome back, ${parsedUser.name}!`, true);
+      loginForm.reset();
       return;
     }
 
-    setSession({ name: user.name, email: user.email });
-    showAuthMessage(`Welcome back, ${user.name}!`, true);
-    loginForm.reset();
-    if (authModal) authModal.classList.remove("show");
-    syncAuthUI();
+    showAuthMessage("Invalid email or password.", false);
   });
 }
-
-loadUsers();
-syncAuthUI();
