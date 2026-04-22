@@ -4,19 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Foodie</title>
+  <title>My Orders — Foodie</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
-
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
   <header class="header header-inner">
     <nav class="navbar wrapper nav-with-search flex items-center gap-2">
       <a href="index.html" class="logo">Foodie.</a>
@@ -28,8 +23,8 @@
           </select>
           <span class="nav-search-divider" aria-hidden="true"></span>
           <i class="fa-solid fa-magnifying-glass nav-search-icon" aria-hidden="true"></i>
-          <input type="search" name="q" class="nav-search-input" placeholder="Search dishes…"
-            aria-label="Search dishes" autocomplete="off">
+          <input type="search" name="q" class="nav-search-input" placeholder="Search dishes…" aria-label="Search dishes"
+            autocomplete="off">
         </div>
       </form>
 
@@ -37,7 +32,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="menu.html">Menu</a></li>
         <li><a href="features.html">Features</a></li>
-        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="testimonials.html">Reviews</a></li>
       </ul>
 
@@ -62,39 +57,25 @@
           </select>
           <span class="nav-search-divider" aria-hidden="true"></span>
           <i class="fa-solid fa-magnifying-glass nav-search-icon" aria-hidden="true"></i>
-          <input type="search" name="q" class="nav-search-input" placeholder="Search dishes…"
-            aria-label="Search dishes" autocomplete="off">
+          <input type="search" name="q" class="nav-search-input" placeholder="Search dishes…" aria-label="Search dishes"
+            autocomplete="off">
         </div>
       </form>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="menu.html">Menu</a></li>
         <li><a href="features.html">Features</a></li>
-        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="testimonials.html">Reviews</a></li>
       </ul>
     </div>
   </header>
 
-  <main class="page-main about-page-main">
-    <section id="about" class="about wrapper flex between">
-      <div class="about-text">
-        <h2>About <span>Foodie</span></h2>
-        <p>Foodie helps you discover top-rated restaurants near you with curated
-          options for every taste and mood.</p>
-        <p>From quick snacks to family dinners, we connect you with trusted
-          restaurant partners and make ordering smooth, fast, and reliable.</p>
-
-        <ul class="about-points">
-          <li><i class="fa-solid fa-check"></i> Verified restaurants with quality checks</li>
-          <li><i class="fa-solid fa-check"></i> Multiple cuisines in one place</li>
-          <li><i class="fa-solid fa-check"></i> Quick order flow with live status updates</li>
-        </ul>
-      </div>
-
-      <div class="about-image">
-        <img src="image/mobile-app.png" alt="Restaurant discovery app">
-      </div>
+  <main class="page-main">
+    <section class="orders-page wrapper" id="orders-page">
+      <h2 class="section-heading">My Orders</h2>
+      <p class="orders-note" id="orders-note">Loading your orders...</p>
+      <div id="orders-list" class="orders-list"></div>
     </section>
   </main>
 
@@ -130,7 +111,6 @@
   </div>
 
   <script src="script.js"></script>
-
 </body>
 
 </html>

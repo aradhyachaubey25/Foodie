@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+foodie.db
+admin_config.json

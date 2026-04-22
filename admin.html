@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merchant Admin - Foodie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="admin-page wrapper">
+    <section id="admin-login-panel" class="admin-panel admin-login-panel">
+      <h1>Merchant Login</h1>
+      <p class="admin-muted">Login credentials are loaded from <code>admin_config.json</code>.</p>
+      <form id="admin-login-form" class="admin-form">
+        <input type="email" id="admin-email" placeholder="Admin Email" required />
+        <input type="password" id="admin-password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+      <p id="admin-auth-msg" class="admin-note"></p>
+      <a class="admin-back-link" href="/">Back to Customer Site</a>
+    </section>
+
+    <section id="admin-dashboard" class="admin-panel" hidden>
+      <div class="admin-head">
+        <h1>Merchant Dashboard</h1>
+        <div class="admin-head-actions">
+          <button id="admin-refresh" type="button">Refresh</button>
+          <button id="admin-logout" type="button">Logout</button>
+        </div>
+      </div>
+
+      <div id="admin-stats" class="admin-stats"></div>
+      <p id="admin-dashboard-msg" class="admin-note"></p>
+
+      <div class="admin-grid">
+        <section class="admin-card">
+          <h2>Menu Management</h2>
+          <form id="admin-menu-form" class="admin-form admin-form-compact">
+            <input type="text" id="menu-id" placeholder="Item ID (e.g. paneer-tikka)" required />
+            <input type="text" id="menu-name" placeholder="Name" required />
+            <input type="text" id="menu-description" placeholder="Description" required />
+            <input type="number" id="menu-price" placeholder="Price" min="1" required />
+            <select id="menu-type" required>
+              <option value="veg">veg</option>
+              <option value="non-veg">non-veg</option>
+            </select>
+            <input type="text" id="menu-image" placeholder="Image path (image/burger.png)" />
+            <button type="submit">Add Menu Item</button>
+          </form>
+          <p id="menu-form-msg" class="admin-note"></p>
+          <div id="admin-menu-list" class="admin-list"></div>
+        </section>
+
+        <section class="admin-card">
+          <h2>Customers</h2>
+          <div id="admin-customers-list" class="admin-list"></div>
+        </section>
+
+        <section class="admin-card">
+          <h2>Orders</h2>
+          <div id="admin-orders-list" class="admin-list"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

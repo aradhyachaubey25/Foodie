@@ -25,7 +25,6 @@
         <div class="nav-search-inner flex items-center gap-1">
           <select name="type" class="nav-search-type" aria-label="Search by">
             <option value="dish">Dishes</option>
-            <option value="restaurant">Restaurants</option>
           </select>
           <span class="nav-search-divider" aria-hidden="true"></span>
           <i class="fa-solid fa-magnifying-glass nav-search-icon" aria-hidden="true"></i>
@@ -60,7 +59,6 @@
         <div class="nav-search-inner flex items-center gap-1">
           <select name="type" class="nav-search-type" aria-label="Search by">
             <option value="dish">Dishes</option>
-            <option value="restaurant">Restaurants</option>
           </select>
           <span class="nav-search-divider" aria-hidden="true"></span>
           <i class="fa-solid fa-magnifying-glass nav-search-icon" aria-hidden="true"></i>
@@ -106,141 +104,8 @@
       </div>
 
       <p id="menu-empty" class="menu-empty" hidden>No dishes match your search.</p>
-      <p id="restaurant-empty" class="menu-empty" hidden>No restaurants match your search.</p>
 
-      <div id="restaurant-grid" class="restaurant-grid" hidden></div>
-
-      <div class="menu-grid">
-
-        <div class="menu-card" data-menu-id="burger" data-menu-name="Burger" data-menu-price="249" data-menu-type="non-veg">
-          <img src="image/burger.png" alt="Burger">
-          <h3>Burger</h3>
-          <p>Cheesy & crispy.</p>
-          <p class="menu-price">₹249</p>
-          <button class="add-btn" type="button" aria-label="Add Burger to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="pizza" data-menu-name="Pizza" data-menu-price="349" data-menu-type="veg">
-          <img src="image/pizza.png" alt="Pizza">
-          <h3>Pizza</h3>
-          <p>Loaded with toppings.</p>
-          <p class="menu-price">₹349</p>
-          <button class="add-btn" type="button" aria-label="Add Pizza to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="sandwich" data-menu-name="Sandwich" data-menu-price="179" data-menu-type="veg">
-          <img src="image/sandwich.png" alt="Sandwich">
-          <h3>Sandwich</h3>
-          <p>Fresh & tasty.</p>
-          <p class="menu-price">₹179</p>
-          <button class="add-btn" type="button" aria-label="Add Sandwich to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="chicken-roll" data-menu-name="Chicken Roll" data-menu-price="199" data-menu-type="non-veg">
-          <img src="image/chicken-roll.png" alt="Chicken Roll">
-          <h3>Chicken Roll</h3>
-          <p>Spicy & yummy.</p>
-          <p class="menu-price">₹199</p>
-          <button class="add-btn" type="button" aria-label="Add Chicken Roll to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="spaghetti" data-menu-name="Spaghetti" data-menu-price="279" data-menu-type="veg">
-          <img src="image/spaghetti.png" alt="Spaghetti">
-          <h3>Spaghetti</h3>
-          <p>Italian classic.</p>
-          <p class="menu-price">₹279</p>
-          <button class="add-btn" type="button" aria-label="Add Spaghetti to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="spring-roll" data-menu-name="Spring Roll" data-menu-price="149" data-menu-type="veg">
-          <img src="image/spring-roll.png" alt="Spring Roll">
-          <h3>Spring Roll</h3>
-          <p>Crispy bite.</p>
-          <p class="menu-price">₹149</p>
-          <button class="add-btn" type="button" aria-label="Add Spring Roll to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="fried-chicken" data-menu-name="Fried Chicken" data-menu-price="299" data-menu-type="non-veg">
-          <img src="image/fried-chicken.png" alt="Fried Chicken">
-          <h3>Fried Chicken</h3>
-          <p>Crispy outside, juicy inside.</p>
-          <p class="menu-price">₹299</p>
-          <button class="add-btn" type="button" aria-label="Add Fried Chicken to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="lasagna" data-menu-name="Lasagna" data-menu-price="329" data-menu-type="veg">
-          <img src="image/lasagna.png" alt="Lasagna">
-          <h3>Lasagna</h3>
-          <p>Rich layered Italian bake.</p>
-          <p class="menu-price">₹329</p>
-          <button class="add-btn" type="button" aria-label="Add Lasagna to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="margherita-pizza" data-menu-name="Margherita Pizza" data-menu-price="319" data-menu-type="veg">
-          <img src="image/pizza.png" alt="Margherita Pizza">
-          <h3>Margherita Pizza</h3>
-          <p>Classic cheese and basil.</p>
-          <p class="menu-price">₹319</p>
-          <button class="add-btn" type="button" aria-label="Add Margherita Pizza to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="veg-delight-sandwich" data-menu-name="Veg Delight Sandwich" data-menu-price="189" data-menu-type="veg">
-          <img src="image/sandwich.png" alt="Veg Delight Sandwich">
-          <h3>Veg Delight Sandwich</h3>
-          <p>Loaded with fresh veggies.</p>
-          <p class="menu-price">₹189</p>
-          <button class="add-btn" type="button" aria-label="Add Veg Delight Sandwich to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="paneer-wrap" data-menu-name="Paneer Wrap" data-menu-price="229" data-menu-type="veg">
-          <img src="image/chicken-roll.png" alt="Paneer Wrap">
-          <h3>Paneer Wrap</h3>
-          <p>Smoky paneer with creamy sauce.</p>
-          <p class="menu-price">₹229</p>
-          <button class="add-btn" type="button" aria-label="Add Paneer Wrap to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="chicken-loaded-burger" data-menu-name="Chicken Loaded Burger" data-menu-price="289" data-menu-type="non-veg">
-          <img src="image/burger.png" alt="Chicken Loaded Burger">
-          <h3>Chicken Loaded Burger</h3>
-          <p>Double patty, extra cheese.</p>
-          <p class="menu-price">₹289</p>
-          <button class="add-btn" type="button" aria-label="Add Chicken Loaded Burger to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="chicken-spaghetti" data-menu-name="Chicken Spaghetti" data-menu-price="339" data-menu-type="non-veg">
-          <img src="image/spaghetti.png" alt="Chicken Spaghetti">
-          <h3>Chicken Spaghetti</h3>
-          <p>Herbed chicken in red sauce.</p>
-          <p class="menu-price">₹339</p>
-          <button class="add-btn" type="button" aria-label="Add Chicken Spaghetti to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="cheese-spring-roll" data-menu-name="Cheese Spring Roll" data-menu-price="169" data-menu-type="veg">
-          <img src="image/spring-roll.png" alt="Cheese Spring Roll">
-          <h3>Cheese Spring Roll</h3>
-          <p>Crispy rolls with cheesy filling.</p>
-          <p class="menu-price">₹169</p>
-          <button class="add-btn" type="button" aria-label="Add Cheese Spring Roll to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="tandoori-chicken-roll" data-menu-name="Tandoori Chicken Roll" data-menu-price="249" data-menu-type="non-veg">
-          <img src="image/chicken-roll.png" alt="Tandoori Chicken Roll">
-          <h3>Tandoori Chicken Roll</h3>
-          <p>Spicy tandoori flavor blast.</p>
-          <p class="menu-price">₹249</p>
-          <button class="add-btn" type="button" aria-label="Add Tandoori Chicken Roll to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-        <div class="menu-card" data-menu-id="classic-veggie-pizza" data-menu-name="Classic Veggie Pizza" data-menu-price="329" data-menu-type="veg">
-          <img src="image/pizza.png" alt="Classic Veggie Pizza">
-          <h3>Classic Veggie Pizza</h3>
-          <p>Bell peppers, olives and corn.</p>
-          <p class="menu-price">₹329</p>
-          <button class="add-btn" type="button" aria-label="Add Classic Veggie Pizza to cart"><i class="fa-solid fa-plus"></i></button>
-        </div>
-
-      </div>
+      <div class="menu-grid"></div>
 
       <div id="menu-actions" class="menu-actions" hidden>
         <button id="menu-add-to-cart-cta" class="menu-add-cart-btn" type="button">Add to Cart (0)</button>
