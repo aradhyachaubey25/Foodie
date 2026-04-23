@@ -67,7 +67,7 @@ Example:
 {
   "name": "Merchant Admin",
   "email": "merchant@foodie.com",
-  "password": "your_password_here"
+  "password": "12345678"
 }
 ```
 
